@@ -1,8 +1,6 @@
 # Roblox Network & Signal Module
 
-A lightweight, type-safe networking and signal system for Roblox built with strict Luau. This module provides a clean abstraction over RemoteEvents with built-in request/response patterns, unreliable messaging, and a robust custom Signal implementation.
-
-[![Portfolio](https://img.shields.io/badge/Portfolio-winfid.github.io-blue?style=for-the-badge)](https://winfid.github.io)
+A lightweight, type-safe networking and signal system for Roblox built with strict Luau. This module provides a clean abstraction over RemoteEvents with built-in request/response patterns, unreliable messaging, and a custom Signal implementation.
 
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
