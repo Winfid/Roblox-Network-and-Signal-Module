@@ -48,7 +48,7 @@ local function serialize(data: {any}): string
 	return result
 end
 
-local function deserialize(jsonString: string): any
+local function deserialize(jsonString: string): {any}
 	local success, result = pcall(HttpService.JSONDecode, HttpService, jsonString)
 	if not success then
 		error('[Network] Failed to deserialize data: ' .. tostring(result), 2)
@@ -59,23 +59,23 @@ end
 local function handleIncomingMessage(playerOrEventName: any, eventNameOrArgs: any, jsonString: any)
 	local player: Player?
 	local eventName: string
-	local serializedData: string
+	local data: string
 
 	if isServer then
 		player = playerOrEventName :: Player
 		eventName = eventNameOrArgs :: string
-		serializedData = jsonString
+		data = jsonString
 	else
 		eventName = playerOrEventName :: string
-		serializedData = eventNameOrArgs
+		data = eventNameOrArgs
 	end
 
 	if type(eventName) ~= 'string' then return end
 
 	local signal = handlers[eventName]
 	if not signal then return end
-	
-	local args = deserialize(serializedData)
+
+	local args = deserialize(data)
 
 	if isServer and player then
 		signal:fire(player, table.unpack(args))
@@ -114,9 +114,9 @@ function Network:send(eventName: string, ...: any)
 	if type(eventName) ~= 'string' then
 		error('[Network] Event name must be a string', 2)
 	end
-	
-	local data = {...}
-	data = serialize(data)
+
+	local args: {any} = {...}
+	local data = serialize(args)
 
 	if isServer then
 		remote:FireAllClients(eventName, data)
@@ -133,9 +133,9 @@ function Network:sendTo(player: Player, eventName: string, ...: any)
 	if type(eventName) ~= 'string' then
 		error('[Network] Event name must be a string', 2)
 	end
-	
-	local data = {...}
-	data = serialize(data)
+
+	local args: {any} = {...}
+	local data = serialize(args)
 
 	remote:FireClient(player, eventName, data)
 end
@@ -144,9 +144,9 @@ function Network:sendUnreliable(eventName: string, ...: any)
 	if type(eventName) ~= 'string' then
 		error('[Network] Event name must be a string', 2)
 	end
-	
-	local data = {...}
-	data = serialize(data)
+
+	local args: {any} = {...}
+	local data = serialize(args)
 
 	if isServer then
 		unreliableRemote:FireAllClients(eventName, data)
@@ -163,9 +163,9 @@ function Network:sendToUnreliable(player: Player, eventName: string, ...: any)
 	if type(eventName) ~= 'string' then
 		error('[Network] Event name must be a string', 2)
 	end
-	
-	local data = {...}
-	data = serialize(data)
+
+	local args: {any} = {...}
+	local data = serialize(args)
 
 	unreliableRemote:FireClient(player, eventName, data)
 end
