@@ -2,7 +2,9 @@
 
 A lightweight, type-safe networking and signal system for Roblox built with strict Luau. This module provides a clean abstraction over RemoteEvents with built-in request/response patterns, unreliable messaging, and a custom Signal implementation.
 
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPLv3-green)](LICENSE)
+
+---
 
 ## Features
 
@@ -13,7 +15,9 @@ A lightweight, type-safe networking and signal system for Roblox built with stri
 - **Clean API**: Simple and intuitive methods for all networking needs
 - **Error Handling**: Comprehensive error messages and validation
 
-## 📦 Installation
+---
+
+## Installation
 
 1. Clone this repository or download the source files
 2. In Roblox Studio, place both `NetworkModule.luau` and `Signal.luau` inside:
@@ -24,7 +28,9 @@ A lightweight, type-safe networking and signal system for Roblox built with stri
        └── Signal.luau
    ```
 
-## 🚀 Quick Start
+---
+
+## Quick Start
 
 ### Basic Setup
 
@@ -41,7 +47,9 @@ end)
 Network:send("playerJoined", "PlayerName", 100)
 ```
 
-## 📖 API Reference
+---
+
+## Network API
 
 ### Network:get()
 Get or create a signal for a specific event name.
@@ -214,7 +222,7 @@ print(data.name) -- "Player1"
 
 ---
 
-## 🎯 Signal API
+## Signal API
 
 The Signal module provides a custom event system used internally by the Network module.
 
@@ -358,14 +366,14 @@ end)
 
 ## Recommended Use
 
-1. **Use unreliable messages for high frequency events** where occasional packet loss is acceptable
-2. **Use reliable messages for important game events** such as purchases, rewards, game state changes
-3. **Always validate data on the server** - don't ever trust the client's input
-4. **Set appropriate timeouts for requests** to prevent infinite yield
-5. **Disconnect signals when no longer needed** to prevent memory leaks
-6. **Use the request/response pattern** for client-server communication requiring confirmation
+- **Use unreliable messages for high frequency events** where occasional packet loss is acceptable
+- **Use reliable messages for important game events** such as purchases, rewards, game state changes
+- **Always validate data on the server** - don't ever trust the client's input
+- **Set appropriate timeouts for requests** to prevent infinite yield
+- **Disconnect signals when no longer needed** to prevent memory leaks
+- **Use the request/response pattern** for client-server communication requiring confirmation
 ---
 
-## ⭐ Show Your Support
+## Show Your Support
 
 If you found these modules helpful, please consider giving it a star!
