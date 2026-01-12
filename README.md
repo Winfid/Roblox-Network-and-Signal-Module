@@ -188,40 +188,6 @@ end)
 
 ---
 
-### Network:serialize()
-Convert a table to JSON string.
-
-```lua
-local jsonString = Network:serialize(data: any) -> string
-```
-
-**Example:**
-```lua
-local playerData = {
-    name = "Player1",
-    score = 100
-}
-local json = Network:serialize(playerData)
-```
-
----
-
-### Network:deserialize()
-Convert a JSON string back to a table.
-
-```lua
-local data = Network:deserialize(jsonString: string) -> any
-```
-
-**Example:**
-```lua
-local json = '{"name":"Player1","score":100}'
-local data = Network:deserialize(json)
-print(data.name) -- "Player1"
-```
-
----
-
 ## Signal API
 
 The Signal module provides a custom event system used internally by the Network module.
